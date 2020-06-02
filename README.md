@@ -1,1 +1,1 @@
-PHP-base--course
+PHP-base-course
