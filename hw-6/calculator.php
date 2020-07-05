@@ -15,7 +15,7 @@ switch ($operation) {
         $result = $operand1 * $operand2;
         break;
     case "div":
-        $result = $operand1 / $operand2;
+        $result = $operand2 === 0 ? 0 : $operand1 / $operand2;
         break;
 }
 
