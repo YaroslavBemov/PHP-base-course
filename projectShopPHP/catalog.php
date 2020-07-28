@@ -1,7 +1,7 @@
 <?php
 include "./db.php";
+include "./auth.php";
 
-define("ROOT", $_SERVER['DOCUMENT_ROOT']);
 define("IMG_DIR", "./images/");
 
 $sql = "SELECT * FROM `goods`";

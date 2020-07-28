@@ -2,8 +2,8 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Июл 08 2020 г., 21:17
+-- Хост: 127.0.0.1:3307
+-- Время создания: Июл 28 2020 г., 18:32
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.4.5
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- База данных: `geekbrains`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `basket`
+--
+
+CREATE TABLE `basket` (
+  `id` int(11) NOT NULL,
+  `good_id` int(11) NOT NULL,
+  `session_id` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `basket`
+--
+
+INSERT INTO `basket` (`id`, `good_id`, `session_id`, `count`) VALUES
+(1, 1, 'aaa', 1),
+(2, 2, 'aaa', 1),
+(4, 1, 'lsp6mr32evodq21hvcu8tlcj90n3806d', 1),
+(5, 1, 'lsp6mr32evodq21hvcu8tlcj90n3806d', 1),
+(6, 2, 'lsp6mr32evodq21hvcu8tlcj90n3806d', 1),
+(7, 1, 'lsp6mr32evodq21hvcu8tlcj90n3806d', 1);
 
 -- --------------------------------------------------------
 
@@ -99,9 +124,35 @@ CREATE TABLE `images` (
   `likes` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `login` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hash` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `password`, `hash`) VALUES
+(1, 'admin', '$2y$10$DfZ574Cj.srSVMfy69QeUO6sbxvDAd1kSy//MEudZZ/UEhyLOjgwm', '276747055f0782f29a0d93.36796612');
+
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `basket`
+--
+ALTER TABLE `basket`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `feedback`
@@ -128,8 +179,20 @@ ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `basket`
+--
+ALTER TABLE `basket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `feedback`
@@ -154,6 +217,12 @@ ALTER TABLE `goods`
 --
 ALTER TABLE `images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

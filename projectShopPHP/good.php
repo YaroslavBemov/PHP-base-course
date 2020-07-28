@@ -1,5 +1,6 @@
 <?php
 
+include "./auth.php";
 include "./db.php";
 define("IMG_DIR", "./images/");
 
@@ -30,7 +31,7 @@ include "./menu.php";
             <h2><?= $item['name'] ?></h2>
             <img src="<?= IMG_DIR . $item['img'] ?>" alt="<?= $item['name'] ?> image">
             <span>Price: <?= $item['price'] ?></span>
-            <button>Buy</button>
+            <button id="buy" data-id="<?= $item['id'] ?>">Buy</button>
             <p><?= $item['fullDescription'] ?></p>
         </div>
     </div>
@@ -47,6 +48,17 @@ include "./menu.php";
     </div>
 
 <? endif; ?>
+<script>
+    let buy = document.getElementById('buy')
 
+    buy.addEventListener('click', handler)
+
+    function handler() {
+        id = buy.dataset.id
+        fetch(`./api.php?id=${id}`)
+            .then(response => response.json())
+            .then(data => document.getElementById('count').innerText = data['count'])
+    }
+</script>
 </body>
 </html>
